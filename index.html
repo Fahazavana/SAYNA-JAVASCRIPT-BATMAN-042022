@@ -19,8 +19,8 @@
         <nav class="container">
             <a href="."><img src="./assets/logo/logohome.png" alt="" class="brand p-3"></a>
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link p-3" href="">HOME</a></li>
-                <li class="nav-item"><a class="nav-link p-3" href="">GAME</a></li>
+                <li class="nav-item"><a class="nav-link active " href="./index.html">HOME</a></li>
+                <li class="nav-item"><a class="nav-link " href="./games.html">GAME</a></li>
             </ul>
         </nav>
     </header>
@@ -29,14 +29,16 @@
             <div class="carte text-center">
                 <p> Au nom de ses parents assassinés, Bruce Wayne mène une guerre éternelle contre les criminels de Gotham City.<br> Il est vengeur. il est la nuit.</p>
                 <h1 class="titre">Il est Batman</h1>
-                <a href=".">VOIR LE HÉROS</a>
-                <a href=".">LES ADVERSAIRES</a>
+                <div class="top-link">
+                    <a href="./index.html">VOIR LE HÉROS</a>
+                    <a href="./games.html">LES ADVERSAIRES</a>
+
+                </div>
             </div>
         </div>
         <img id="arrow" src="./assets/logo/flèche_down_header.png" alt="">
     </div>
-
-    <section id="cinema">
+    <section id="cinema" class="scroll-show">
         <div class="container">
             <h2>BATMAN AU CINEMA</h2>
             <p>
@@ -44,28 +46,33 @@
                 alors héros majeur de DC, car il n’a aucun pouvoir. Il sera porté au cinema pour la première fois en 1943 par Lewis Wilson et bénéficiera de nombreux reboot, donnant l’occasion à de multiples acteurs d’interpréter l’homme chauve souris.
                 Voici les trois derniers :
             </p>
-            <div class="card-3">
+            <div class="card-3 scroll-show">
                 <div><img src="./assets/img/Home/Bathome2.png" alt=""></div>
                 <div><img src="./assets/img/Home/Bathome3.png" alt=""></div>
                 <div><img src="./assets/img/Home/Bathome4.png" alt=""></div>
             </div>
         </div>
     </section>
-
-
-    <div class="slider">
-        <ul class="slider-data">
-            <li><img class="slide-item" src="./assets/img/Home/Batslider1.png" alt=""></li>
-        </ul>
+    <div class="slider scroll-show">
+        <img class="slider-item" src="./assets/img/Home/Batslider1.png" alt="">
+        <img class="slider-item" src="./assets/img/Home/Batslider2.png" alt="">
+        <img class="slider-item" src="./assets/img/Home/Batslider3.png" alt="">
+        <img class="slider-item" src="./assets/img/Home/Batslider4.png" alt="">
+        <img class="slider-item" src="./assets/img/Home/Batslider5.png" alt="">
+        <img class="slider-item" src="./assets/img/Home/Batslider6.png" alt="">
+        <img class="slider-item" src="./assets/img/Home/Batslider7.png" alt="">
+        <img class="slider-item" src="./assets/img/Home/Batslider8.png" alt="">
+        <img class="slider-item" src="./assets/img/Home/Batslider9.png" alt="">
+        <img class="slider-item" src="./assets/img/Home/Batslider10.png" alt="">
     </div>
-    <section id="nemesis">
+    <section id="nemesis" class="scroll-show">
         <div class="container">
             <h2>NÉMÉSIS</h2>
             <p>
                 Batman souhaite éradiquer la criminalité de Gotham. C’est pourquoi, il affrontera la plupart du temps, des vilains sans capacités surnaturelles mais particulièrement violents ou psychopathes. Avec son introduction dans la Justice League il aura l’occasion
                 de se mesurer à des antagonistes qui défient l’imagination et les lois de la physique. Parmis les derniers ennemis emblématiques que nous avons pu voir au cinéma, on retrouve :
             </p>
-            <div class="card-3">
+            <div class="card-3 scroll-show">
                 <div><img src="./assets/img/Home/Bathome5.png" alt=""></div>
                 <div><img src="./assets/img/Home/Bathome6.png" alt=""></div>
                 <div><img src="./assets/img/Home/Bathome7.png" alt=""></div>
@@ -73,11 +80,14 @@
         </div>
     </section>
 
-    <section id="multimedia">
+    <section id="multimedia" class="scroll-show">
         <div class="container">
-            <div class="slide-wrapper">
-                <div class="slider-top">
-                    <button><img src="./assets/logo/home/icon_flèche_1.png" alt=""></button>
+
+            <button class="left"><img src="./assets/logo/home/icon_flèche_1.png" alt=""></button>
+            <button class="right"><img src="./assets/logo/home/icon_flèche_2.png" alt=""></button>
+
+            <div class="slider-media">
+                <div class="carte-slider-top ">
                     <div class="carte-slider">
                         <div class="carte-img">
                             <img src="./assets/img/Home/Bathome8.png" alt="">
@@ -91,13 +101,55 @@
                                 retour chez lui à Gotham, avec l'aide de son majordome Alfred Pennyworth, Bruce Wayne se lance alors dans la lutte contre le crime sous le nom de Batman.</p>
                         </div>
                     </div>
-                    <button><img src="./assets/logo/home/icon_flèche_2.png" alt=""></button>
                 </div>
-                <div class="bande-anonce"></div>
+                <iframe src="https://www.youtube.com/embed/jXrFsn9pcZY" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <!--allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+            </div>
+
+
+            <div class="slider-media">
+                <div class="carte-slider-top ">
+                    <div class="carte-slider">
+                        <div class="carte-img">
+                            <img src="./assets/img/Home/Bathome8.png" alt="">
+                        </div>
+                        <div class="carte-body">
+                            <h2>ACTION, ADVENTURE</h2>
+                            <span class="subtitle">Batman Begins</span><br>
+                            <span class="source">IMDB:<span class="text-yellow">8.2</span></span>
+                            <p>
+                                Le jeune Bruce Wayne assiste impuissant au meurtre de ses parents. Profondément traumatisé, il grandit obnubilé par un désir de vengeance. La Ligue des ombres, une secte de guerriers ninja dirigée par Ra's al Ghul, se chargera de son entraînement. De
+                                retour chez lui à Gotham, avec l'aide de son majordome Alfred Pennyworth, Bruce Wayne se lance alors dans la lutte contre le crime sous le nom de Batman.</p>
+                        </div>
+                    </div>
+                </div>
+                <iframe src="https://www.youtube.com/embed/UMgb3hQCb08" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <!--allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+            </div>
+
+
+            <div class="slider-media">
+                <div class="carte-slider-top">
+                    <div class="carte-slider">
+                        <div class="carte-img">
+                            <img src="./assets/img/Home/Bathome8.png" alt="">
+                        </div>
+                        <div class="carte-body">
+                            <h2>ACTION, ADVENTURE</h2>
+                            <span class="subtitle">Batman Begins</span><br>
+                            <span class="source">IMDB:<span class="text-yellow">8.2</span></span>
+                            <p>
+                                Le jeune Bruce Wayne assiste impuissant au meurtre de ses parents. Profondément traumatisé, il grandit obnubilé par un désir de vengeance. La Ligue des ombres, une secte de guerriers ninja dirigée par Ra's al Ghul, se chargera de son entraînement. De
+                                retour chez lui à Gotham, avec l'aide de son majordome Alfred Pennyworth, Bruce Wayne se lance alors dans la lutte contre le crime sous le nom de Batman.</p>
+                        </div>
+                    </div>
+                </div>
+                <iframe src="https://www.youtube.com/embed/OiqPQ7L_C00" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <!--allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
             </div>
         </div>
     </section>
-    <section id="contact">
+    <section id="contact" class="scroll-show">
         <div class="form">
             <h2> PRENONS CONTACT</h2>
             <form action="">
@@ -122,7 +174,7 @@
             </form>
         </div>
     </section>
-    <section id="citation">
+    <section id="citation" class="scroll-show">
         <div class="container">
             <div class="lq">
                 <img src="./assets/logo/home/icon_guillemets_1.png" alt="">
@@ -150,7 +202,7 @@
             </div>
         </div>
     </section>
-    <footer>
+    <footer class="scroll-show">
         <div class="container">
             <p><img class="ic-0" src="./assets/logo/icon_WB.png" alt=""> Ce projet respecte l’univers cinématographique des films Batman récents. Version Nolan & Snyder & Reeves</p>
             <ul>
