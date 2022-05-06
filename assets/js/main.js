@@ -1,20 +1,24 @@
 $(document).ready(function() {
     let $win = $(window);
     let $doc = $(document)
-    drawLine();
-    $win.resize(function() {
-        drawLine();
-    })
+
 
     function drawLine() {
         if ($win.width() > 768) {
-            /*hauteur des lignes */
             $('.lLine,.rLine').css("display", "block").animate({ 'height': $doc.height() }, 'slow');
         } else {
-            $('.lLine,.rLine').css("display", "none")
+            $('.lLine,.rLine,tline').css("display", "none")
         }
     }
+    drawLine();
+    $win.resize(function() {
+        drawLine();
+    });
 
+
+
+
+    /* LES SLIDERS DE HOME */
     /* scrollbar */
     $win.scroll(function() {
         if ($win.width() > 768) {
@@ -23,29 +27,54 @@ $(document).ready(function() {
         }
     });
 
-
-
-
-
-    /* slider auto */
-    let $sliderItem = $(".slider-item");
-    let $now = 0;
-
+    /* SLIDER AUTO */
     $(function() {
+
+        /* slider 1*/
+        let $sliderItem = $(".slider-item");
+        let $now = 0;
+
         function slide() {
             for (var i = 0; i < $sliderItem.length; i++) {
                 $($sliderItem[i]).css('display', 'none')
             }
             $now++;
             ($now > $sliderItem.length) ? ($now = 1) : {};
-            $($sliderItem[$now - 1]).css('display', 'block')
+            $($sliderItem[$now - 1]).fadeIn(1000)
+
         }
-        setInterval(slide, 5000)
+        /* slider 2 */
+        /* SLIDE CITATION */
+
+        let $citeIndex = 0;
+
+        function showCitation() {
+            let $i;
+            let $citationSlider = $(".citation-carte");
+            let $citationIndic = $(".indicator-item")
+            for ($i = 0; $i < $citationSlider.length; $i++) {
+                $($citationSlider[$i]).css('display', 'none');
+                $($citationIndic[$i]).hasClass("indicator-active") ? $($citationIndic[$i]).removeClass("indicator-active") : {};
+            }
+            $citeIndex++;
+            if ($citeIndex > $citationSlider.length) {
+                $citeIndex = 1;
+            }
+            $($citationSlider[$citeIndex - 1]).fadeIn(1000);
+            $($citationIndic[$citeIndex - 1]).addClass("indicator-active");
+        }
+
+        function autoSlide() {
+            slide();
+            showCitation()
+        }
+        showCitation()
+        slide()
+        setInterval(autoSlide, 3000)
+
     })
 
-
-    /* Media slider */
-
+    /* MULTIMEDIA SLIDER */
     let $showSlide = function($n) {
         let $i;
         let $mediaSlider = $(".slider-media");
@@ -56,8 +85,6 @@ $(document).ready(function() {
         }
         $($mediaSlider[$SlideIndex - 1]).fadeIn(1500)
     }
-
-
 
     $("#multimedia button.left").click(function(e) {
         e.preventDefault();
@@ -77,7 +104,9 @@ $(document).ready(function() {
     function changeSlider($n) {
         $showSlide($SlideIndex += $n)
     }
+    /* fin */
 
+    /* FIN SLIDER */
 
 
     /* Apparition au défillement */
@@ -90,13 +119,15 @@ $(document).ready(function() {
                 $observer.unobserve($entry.target);
             }
         });
-
     }
     const $observer = new IntersectionObserver($show, $options)
     const $scrollShow = $(".scroll-show,.scroll-show > *")
     for (let i = 0; i < $scrollShow.length; i++) {
-
         $observer.observe($scrollShow[i])
     }
+
+
+    $(function() { $("h2,#top .carte").animate({ 'left': '0' }, 1500) })
+
 
 });

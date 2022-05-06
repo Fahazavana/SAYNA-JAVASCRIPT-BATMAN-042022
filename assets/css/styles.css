@@ -210,20 +210,15 @@ header {
 /* SLIDER 1*/
 
 .slider {
-    margin: 5rem 0;
-    max-height: 700px;
-}
-
-ul.slider-data {
+    margin: 2.5rem auto;
     width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
 }
 
-ul.slider-data .slide-item {
-    max-width: 100%;
-    height: auto!important;
+.slider .slider-item {
+    display: none;
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
 }
 
 
@@ -237,19 +232,18 @@ ul.slider-data .slide-item {
 /* MULTIMEDIA */
 
 #multimedia .container {
-    background-color: #890008;
     color: #fff;
 }
 
 #multimedia button {
-    position: absolute;
+    position: relative;
     top: 150px;
     background-color: transparent;
     border: none;
 }
 
 #multimedia button.right {
-    right: 10%;
+    right: -92.5%
 }
 
 #multimedia .slider-media {
@@ -312,12 +306,12 @@ ul.slider-data .slide-item {
     width: 100%;
 }
 
-button.ytp-large-play-button.ytp-button>svg {
-    background-image: url(../logo/home/icon_player.png)!important;
+#multimedia iframe:hover {
+    box-shadow: 0px 0px 1rem var(--color-white);
 }
 
 
-/* contact */
+/* CONTACT */
 
 #contact {
     padding: 3rem 0;
@@ -358,6 +352,39 @@ button.ytp-large-play-button.ytp-button>svg {
     margin-top: 20px;
 }
 
+.form .select-container {
+    position: relative;
+}
+
+.select-container select {
+    display: none;
+}
+
+.select-selected {
+    background-color: transparent;
+}
+
+.select-items div,
+.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border-bottom: 2px solid var(--color-grad-00);
+    cursor: pointer;
+}
+
+.select-items {
+    position: absolute;
+    background-color: transparent;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.select-hide {
+    display: none;
+}
+
 form .info {
     margin-top: 20px;
     border-bottom: 1px solid var(--color-grad-00);
@@ -395,6 +422,9 @@ form .info {
     border: none;
 }
 
+
+/* CITATION */
+
 #citation .container {
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -404,7 +434,7 @@ form .info {
     align-items: center;
 }
 
-#citation .citation-carte {
+#citation .wrapper {
     text-align: center;
     color: white;
     width: 60%;
@@ -421,12 +451,27 @@ form .info {
     font-family: 'radjhani';
 }
 
+.indicator {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .indicator-item {
+    width: 2px;
+    height: 2px;
     display: inline-block;
-    padding: 6px;
+    padding: 4px;
     border: 2px solid var(--color-blue);
     border-radius: 50%;
-    margin: 5px;
+}
+
+.indicator-active {
+    padding: 6px;
+    border: 3px solid var(--color-blue);
+    background-color: var(--color-blue);
 }
 
 #citation .lq {
@@ -436,6 +481,9 @@ form .info {
 #citation .rq {
     align-self: flex-end;
 }
+
+
+/* Footer */
 
 footer {
     color: white;
@@ -454,10 +502,21 @@ footer .duo {
     align-items: center;
 }
 
+
+/* TAILLE DES ICONE */
+
+.ic-0 {
+    width: 25px;
+    height: 25px;
+}
+
 .ic-1 {
     width: 30px;
     height: 30px;
 }
+
+
+/* SCORLLBAR */
 
 .scroll {
     z-index: 15;
@@ -484,41 +543,6 @@ footer .duo {
 
 .scroll .arrow2 {
     width: 70px;
-}
-
-
-/*SLIDER*/
-
-.slider img.slider-item {
-    width: 100%;
-    animation: slider 1s;
-    height: auto;
-    display: none;
-    animation: translateIn 1s;
-}
-
-.slider img.slider-item:first-of-type {
-    display: block;
-}
-
-@keyframes translateIn {
-    from {
-        opacity: 0;
-        transform: translateX(-100vw);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes translateOut {
-    from {
-        transform: translateX(0vw);
-    }
-    to {
-        transform: translateX(10vw);
-    }
 }
 
 @media screen and (max-width:768px) {
@@ -548,7 +572,7 @@ footer .duo {
     .card-3 div {
         width: 70%;
     }
-    #multimedia .slider-top button {
+    #multimedia button {
         display: none;
     }
     #multimedia .carte-slider {
@@ -558,6 +582,10 @@ footer .duo {
         margin: auto;
         max-height: none;
     }
+    #multimedia .slider-media .wrapper {
+        display: flex !important;
+        flex-direction: column;
+    }
     #multimedia .carte-slider .carte-img img {
         width: 100%;
     }
@@ -566,7 +594,6 @@ footer .duo {
         width: 100%;
     }
     #multimedia .carte-slider .carte-body {
-        margin-top: -65%;
         border-top-right-radius: 0;
         border-bottom-left-radius: 1.5rem;
         border-bottom-right-radius: 1.5rem;
@@ -583,13 +610,21 @@ footer .duo {
 
 /* JS */
 
-.scroll-show {
+.scroll-show>* {
     opacity: 0;
-    transform: translateY(10%);
+    transform: scale(0);
+    /* transform: translateY(10%); */
 }
 
 .show {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
+    /* transform: translateY(0); */
     transition: 2s;
+}
+
+h2,
+#top .carte {
+    position: relative;
+    left: -250%;
 }
