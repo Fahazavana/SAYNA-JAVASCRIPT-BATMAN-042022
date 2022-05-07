@@ -45,7 +45,7 @@
         </div>
         <img id="arrow" src="./assets/logo/flèche_down_header.png" alt="" />
     </div>
-    <section id="cinema">
+    <section id="cinema" class="scroll-show">
         <div class="container">
             <h2>BATMAN AU CINEMA</h2>
             <p>
@@ -92,7 +92,7 @@
         <img class="slider-item" src="./assets/img/Home/Batslider10.png" alt="" />
     </div>
 
-    <section id="nemesis">
+    <section id="nemesis" class="scroll-show">
         <div class="container">
             <h2>NÉMÉSIS</h2>
             <p>
@@ -125,7 +125,7 @@
         </div>
     </section>
 
-    <section id="multimedia">
+    <section id="multimedia" class="scroll-show">
         <div class="container">
             <button class="left">
                 <img src="./assets/logo/home/icon_flèche_1.png" alt="" />
@@ -206,7 +206,7 @@
     <section id="contact" class="scroll-show">
         <div class="form">
             <h2>PRENONS CONTACT</h2>
-            <form action=".">
+            <form action="." class="scroll-show">
                 <span class="title">ADRESSE EMAIL</span>
                 <input type="email" name="email" id="email" placeholder="Adresse email" />
                 <span class="title">NEWSLETTER</span>
@@ -235,7 +235,8 @@
                 </div>
 
                 <span class="title">MESSAGE</span>
-                <input type="text" name="msg" id="msg" placeholder="Laissez un commentaire pour la communauté" />
+
+                <textarea rows="1" name="msg" id="msg" placeholder="Laissez un commentaire pour la communauté"></textarea>
                 <input class="btn" type="submit" value="CONFIRMER" />
             </form>
         </div>
@@ -383,6 +384,14 @@
             </ul>
         </div>
     </footer>
+
+    <div id="overlay">
+        <div class="popcontainer">
+            <div class="popup">
+                <div class="message"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="./assets/js/jquery-3.6.0.min.js"></script>
     <script src="./assets/js/main.js"></script>

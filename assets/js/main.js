@@ -5,11 +5,12 @@ $(document).ready(function() {
 
     drawLine = function() {
         if ($win.width() > 768) {
-            $('.lLine,.rLine').css("display", "block").animate({ 'height': $doc.height() }, 'slow');
+            $('.lLine,.rLine').css("display", "block").css({ 'height': $doc.height() }, 'slow');
         } else {
             $('.lLine,.rLine,tline').css("display", "none")
         }
     }
+
     drawLine();
     $win.resize(function() {
         drawLine();
@@ -25,6 +26,7 @@ $(document).ready(function() {
             let $posY = $(document).scrollTop()
             $(".scroll").css({ "transform": `translateY(${$posY}px)` })
         }
+        drawLine
     });
 
     /* SLIDER AUTO */
@@ -177,7 +179,34 @@ $(document).ready(function() {
 
 
     /* VALIDATION DES FORMULAIRES */
-    let $formulaire = $("form")
-    let $entry = $($formulaire).find("input:not([submit])")
-    console.log($entry)
+
+
+    $(".form form").submit(function(e) {
+        e.preventDefault();
+        $("#overlay").slideToggle(600);
+        let $formulaire = $("form")
+        let $entry = $($formulaire).find("input:not([type='submit']),textarea")
+        let $isValid = true;
+
+
+        /* Pas encore complet*/
+        for (let i = 0; i < $entry.length; i++) {
+            if ($($entry[i]).val().length == 0) {
+                $isValid = false
+            };
+        }
+        if ($isValid) {
+            $("#overlay .message").text("SUCCES")
+            $(this).reset();
+        } else {
+            $("#overlay .message").text("Verifier le fomulaire")
+        }
+
+    });
+    $(".popcontainer").click(function(e) {
+        e.preventDefault();
+        $("#overlay").slideToggle(600);
+    });
+
+    drawLine()
 });
