@@ -3,7 +3,7 @@ $(document).ready(function() {
     let $doc = $(document)
 
 
-    function drawLine() {
+    drawLine = function() {
         if ($win.width() > 768) {
             $('.lLine,.rLine').css("display", "block").animate({ 'height': $doc.height() }, 'slow');
         } else {
@@ -46,7 +46,7 @@ $(document).ready(function() {
         /* slider 2 */
         /* SLIDE CITATION */
 
-        let $citeIndex = 0;
+        let $citeIndex = 6;
 
         function showCitation() {
             let $i;
@@ -72,7 +72,7 @@ $(document).ready(function() {
         slide()
         setInterval(autoSlide, 3000)
 
-    })
+    });
 
     /* MULTIMEDIA SLIDER */
     let $showSlide = function($n) {
@@ -111,8 +111,8 @@ $(document).ready(function() {
 
     /* Apparition au défillement */
     const $options = { root: null, rootMargin: " 0px", threshold: 0.25 }
-    const $ratio = 0.25
-    const $show = function(entries, $observer) {
+    const $ratio = 0.15
+    $show = function(entries, $observer) {
         entries.forEach($entry => {
             if ($entry.intersectionRatio > $ratio) {
                 $($entry.target).addClass("show").slideDown(3000);
@@ -126,7 +126,6 @@ $(document).ready(function() {
         $observer.observe($scrollShow[i])
     }
     $(function() { $("h2,#top .carte").animate({ 'left': '0' }, 1500) });
-
 
 
 
@@ -158,4 +157,27 @@ $(document).ready(function() {
         $($menuBtn).find(":first-child").text($(selectedLi).text())
     }
     $menuBtn.on("click", () => $menu.slideToggle(500));
+
+
+
+
+
+
+    /* Les Carte */
+    $(".card-3>.col").hover(function() {
+        let $curent = $("img", this);
+        $curent.hasClass("zoomOut") ? $curent.removeClass("zoomOut").addClass("zoomIn") : $curent.addClass("zoomIn");
+        $(".info", this).toggle(500);
+
+    }, function() {
+        let $curent = $("img", this);
+        $curent.hasClass("zoomIn") ? $curent.removeClass("zoomIn").addClass("zoomOut") : $curent.addClass("zoomOut");
+        $(".info", this).toggle(500);
+    });
+
+
+    /* VALIDATION DES FORMULAIRES */
+    let $formulaire = $("form")
+    let $entry = $($formulaire).find("input:not([submit])")
+    console.log($entry)
 });

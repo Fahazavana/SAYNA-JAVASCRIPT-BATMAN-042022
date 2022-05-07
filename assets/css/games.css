@@ -4,30 +4,30 @@
 
 #top .container {
     width: 100%;
-    border: 2px solid green
 }
 
 #top .carte.titre {
-    font-size: 32px;
-    border: 2px solid green;
+    font-size: clamp(32px, 4vw, 50px);
+    margin: 0;
 }
 
 section.container {
     color: var(--color-white);
 }
 
-.quiz-container {
-    margin-top: 2rem;
+.quizz-container {
+    margin-top: 5rem;
+    width: 55%;
 }
 
-.quiz-title {
-    font-size: 22px;
+.quizz-title {
+    font-size: 18px;
 }
 
 .qcm {
     background-color: var(--color-gray);
     font-size: 18px;
-    width: 40%;
+    width: 95%;
     padding: 5px 10px;
     margin-top: 5px;
 }
@@ -36,4 +36,28 @@ section.container {
     width: 22px;
     height: 22px;
     margin-right: 22px;
+}
+
+.qcm:hover {
+    background-color: var(--color-yellow-alt);
+}
+
+.btn {
+    border: none;
+    margin: 2.5rem auto;
+    display: block;
+}
+
+.slider-quizz img {
+    width: 100%
+}
+
+@media screen and (max-width:768px) {
+    .quizz-container {
+        width: 90%;
+        margin: 5rem auto;
+    }
+    .qcm {
+        width: 100%;
+    }
 }

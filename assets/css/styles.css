@@ -138,6 +138,10 @@ header {
     text-decoration: underline 2px;
 }
 
+.nav-link:hover {
+    color: #ffff00;
+}
+
 
 /* Top header*/
 
@@ -157,8 +161,7 @@ header {
     margin: auto;
 }
 
-[type="submit"],
-#top .carte a {
+.btn {
     font-family: 'rajdhani';
     font-size: 20px;
     color: white;
@@ -197,11 +200,11 @@ header {
     justify-content: space-between;
 }
 
-.card-3 div {
+.card-3>div.col {
     width: 30%;
 }
 
-.card-3 div>img {
+.card-3>div.col>img {
     width: 100%;
     height: auto;
 }
@@ -307,7 +310,7 @@ header {
 }
 
 #multimedia iframe:hover {
-    box-shadow: 0px 0px 1rem var(--color-white);
+    box-shadow: 0px 0px 2rem var(--color-white);
 }
 
 
@@ -367,18 +370,31 @@ form .info {
 }
 
 .btn-group {
-    padding: 20px;
+    padding: 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
-.form button {
+.form input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.btn-group label.btn2 {
+    cursor: pointer;
     width: 150px;
     border: 2px solid var(--color-grad-00);
     font-size: 20px;
-    background-color: transparent;
+    background: linear-gradient(90deg, rgba(237, 222, 191, 0.4) 10%, rgba(25, 88, 125, 0.4) 60%);
     color: white;
     padding: 10px;
+}
+
+.btn-group input[type="radio"]:checked+label,
+label.btn2:hover {
+    font-weight: bold;
+    background: linear-gradient(100deg, rgba(237, 222, 191, 1) 10%, rgba(25, 88, 125, 1) 60%);
 }
 
 [type="submit"] {
@@ -465,10 +481,27 @@ li.selected {
     text-align: center;
     color: white;
     width: 60%;
-    min-height: 100px;
+    height: 350px;
+}
+
+#citation ul {
+    color: #fff;
+    list-style-type: symbols("*");
+    margin-top: auto;
+    width: fit-content;
+}
+
+#citation .citation-carte {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .citation-carte .carte-texte {
+    font-family: 'space-grotesk';
+    font-weight: bold;
+    font-size: 20px;
     padding: 1.25rem;
 }
 
@@ -476,6 +509,14 @@ li.selected {
     padding: 1.25em;
     color: #c4c4c4;
     font-family: 'radjhani';
+    font-size: 18px;
+}
+
+.sep {
+    margin: 3px auto;
+    width: 5px;
+    background-color: #bcbcbc;
+    height: 2px;
 }
 
 .indicator {
@@ -543,6 +584,17 @@ footer .duo {
 }
 
 
+/*hover sur les icone (necessite encore des ajustements) */
+
+.brand:hover,
+.scroll img:hover,
+.ic-0:hover,
+.ic-1:hover,
+.duo:hover img {
+    filter: invert(30%) sepia(90%) saturate(4000%) hue-rotate(10deg) brightness(180%) contrast(90%);
+}
+
+
 /* SCORLLBAR */
 
 .scroll {
@@ -596,34 +648,53 @@ footer .duo {
         flex-direction: column;
         align-items: center;
     }
-    .card-3 div {
+    .card-3>div.col {
         width: 70%;
+        margin-bottom: 2.5rem;
     }
     #multimedia button {
-        display: none;
+        position: relative;
+        top: 300px;
+        background-color: transparent;
+        border: none;
+    }
+    #multimedia button.right {
+        left: 75%;
     }
     #multimedia .carte-slider {
-        width: 80%;
+        width: 85%;
         align-items: center;
         flex-direction: column;
         margin: auto;
         max-height: none;
     }
-    #multimedia .slider-media .wrapper {
-        display: flex !important;
-        flex-direction: column;
+    #multimedia .carte-slider-top {
+        max-height: none;
     }
     #multimedia .carte-slider .carte-img img {
         width: 100%;
     }
-    #multimedia .carte-slider .carte-img,
-    #multimedia .carte-slider .carte-body {
+    #multimedia .carte-slider .carte-img {
         width: 100%;
     }
     #multimedia .carte-slider .carte-body {
+        width: 100%;
+        margin-top: -50%;
         border-top-right-radius: 0;
         border-bottom-left-radius: 1.5rem;
         border-bottom-right-radius: 1.5rem;
+    }
+    #contact .form {
+        width: 90%;
+        margin: auto;
+    }
+    #citation .lq img,
+    #citation .rq img {
+        width: 50px;
+    }
+    #citation .wrapper {
+        width: 100%;
+        height: none;
     }
 }
 
@@ -654,4 +725,47 @@ h2,
 #top .carte {
     position: relative;
     left: -250%;
+}
+
+.btn:hover {
+    font-weight: bold;
+    background: linear-gradient(90deg, rgba(237, 222, 191, 1) 40%, rgba(137, 0, 8, 1) 60%);
+}
+
+.info {
+    transform: scale(1.1);
+    bottom: -2.5%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(25, 88, 125, 0.5);
+    display: none;
+}
+
+.info img {
+    position: relative;
+    z-index: 2;
+    left: 5px;
+    top: 5px;
+    width: 30%;
+}
+
+.info .nom {
+    font-size: 22px;
+    width: 75%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 1em;
+    text-align: center;
+    background-image: linear-gradient(-45deg, rgba(237, 222, 191, 0.7) 40%, rgba(137, 0, 8, 0.7) 60%);
+    transform: translateY(-50%);
+}
+
+.zoomIn {
+    transform: scale(1.1);
+    transition: .6s ease;
+}
+
+.zoomOut {
+    transform: scale(1);
+    transition: .6s ease;
 }
