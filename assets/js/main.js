@@ -112,8 +112,8 @@ $(document).ready(function() {
 
 
     /* Apparition au défillement */
-    const $options = { root: null, rootMargin: " 0px", threshold: 0.25 }
-    const $ratio = 0.15
+    const $options = { root: null, rootMargin: " 0px", threshold: 0.1 }
+    const $ratio = 0.1
     $show = function(entries, $observer) {
         entries.forEach($entry => {
             if ($entry.intersectionRatio > $ratio) {
@@ -199,7 +199,7 @@ $(document).ready(function() {
             $("#overlay .message").text("SUCCES")
             $(this).reset();
         } else {
-            $("#overlay .message").text("Verifier le fomulaire")
+            $("#overlay .message").text("Verifier le fomulaire, car il ya des champ non remplit")
         }
 
     });
