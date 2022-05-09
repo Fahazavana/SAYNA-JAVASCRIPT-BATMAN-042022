@@ -3,18 +3,7 @@ $(document).ready(function() {
     let $doc = $(document)
 
 
-    drawLine = function() {
-        if ($win.width() > 768) {
-            $('.lLine,.rLine').css("display", "block").css({ 'height': $doc.height() }, 'slow');
-        } else {
-            $('.lLine,.rLine,tline').css("display", "none")
-        }
-    }
-
-    drawLine();
-    $win.resize(function() {
-        drawLine();
-    });
+    
 
 
 
@@ -26,7 +15,6 @@ $(document).ready(function() {
             let $posY = $(document).scrollTop()
             $(".scroll").css({ "transform": `translateY(${$posY}px)` })
         }
-        drawLine
     });
 
     /* SLIDER AUTO */
@@ -208,7 +196,8 @@ $(document).ready(function() {
         }
         if ($isValid) {
             $("#overlay .message").text("MESSAGE REÇU");
-            $("form")[0].reset();
+
+            $("form").reset();
         } else {
             $("#overlay .message").text("VERIFIER LE FOMULAIRE, CAR IL YA DES CHAMPS NON REMPLIT")
         }
@@ -220,5 +209,19 @@ $(document).ready(function() {
         $("#contact").slideToggle(300)
     });
 
+
+
+
+    drawLine = function() {
+        if ($win.width() > 768) {
+            $('.lLine,.rLine').css("display", "block").css({ 'height': $("div.end").offset().top }, 'slow');
+        } else {
+            $('.lLine,.rLine,tline').css("display", "none")
+        }
+    }
+
+    $(document).resize(function() {
+        drawLine();
+    });
     drawLine()
 });

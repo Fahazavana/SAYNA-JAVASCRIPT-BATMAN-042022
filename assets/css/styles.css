@@ -178,7 +178,7 @@ header {
 
 .top-link a {
     display: block;
-    width: 187px;
+    width: 200px;
 }
 
 #top #arrow {
@@ -508,7 +508,7 @@ li.selected {
 .citation-carte .carte-texte {
     font-family: 'space-grotesk';
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     padding: 1.25rem;
 }
 
@@ -516,7 +516,7 @@ li.selected {
     padding: 1.25em;
     color: #c4c4c4;
     font-family: 'radjhani';
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .sep {

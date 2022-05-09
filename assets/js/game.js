@@ -199,6 +199,7 @@ $(document).ready(function () {
             $("section#quizznum1").append(container);
         }
         $resultat = {};
+        drawLine();
     }
     loadQuizz1();
 
