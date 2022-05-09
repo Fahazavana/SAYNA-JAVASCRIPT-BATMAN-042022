@@ -383,6 +383,7 @@ header {
     height: 0;
 }
 
+.button2,
 .btn-group label.btn2 {
     cursor: pointer;
     width: 150px;
@@ -393,6 +394,8 @@ header {
     padding: 10px;
 }
 
+
+.button2:hover,
 .btn-group input[type="radio"]:checked+label,
 label.btn2:hover {
     font-weight: bold;
@@ -797,6 +800,7 @@ h2,
 
 
 /* pop up box */
+#quizzresult .container,
 #overlay {
     cursor: pointer;
     top: 0;

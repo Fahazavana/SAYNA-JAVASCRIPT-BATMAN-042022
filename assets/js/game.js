@@ -69,7 +69,7 @@ $(document).ready(function () {
                 1: "Thomas et Martha",
                 2: "Martha et James",
             },
-            correct: "",
+            correct: 1,
         },
 
         {
@@ -175,6 +175,7 @@ $(document).ready(function () {
                 class: "quizz-container",
                 id: `quizz${i}`,
             });
+
             quest.setAttribute("class", "quizz-title");
             container.appendChild(quest);
             quest.innerText = question;
@@ -190,7 +191,7 @@ $(document).ready(function () {
                 });
                 qcm.appendChild(checkbox);
                 let label = document.createElement("label");
-                label.setAttribute("for", `qcm${i}-${j}`);
+                label.setAttribute("for", `qcm${i}${j}`);
                 label.innerText = choix[j];
                 qcm.appendChild(label);
                 container.appendChild(qcm);
@@ -213,9 +214,7 @@ $(document).ready(function () {
     $(".quizz-container  input[type='checkbox']").click(function (e) {
         let $next = $(this).parent().parent().next();
         let $current = $(this);
-        let reponse = {};
         let $nameVal = $current.attr("name");
-        console.log(typeof $nameVal);
         let $quizzId = getQuizzId($nameVal);
         let $group = $(`input[name=${$nameVal}]`);
         for (let i = 0; i < $group.length; i++) {
@@ -226,7 +225,6 @@ $(document).ready(function () {
         }
 
         let $resultLength = Object.keys($resultat).length;
-        console.log(quizz.length, $resultLength, $resultat);
         if ($next.length > 0 && quizz.length !== $resultLength) {
             var offset = $($next).offset().top;
             $("html,body").animate({ scrollTop: offset }, 800);
@@ -238,26 +236,41 @@ $(document).ready(function () {
             }
         }
 
-        function checkResult() {
-            for (var i = 0; i < quizz.length; i++) {
-                if (quizz[i].correct == $resultat[i]) {
-                    $(`#quizz${i}`)
-                        .find(`[value="${$resultat[i]}"]`)
-                        .parent()
-                        .addClass("correct");
-                    console.log(i, "correct");
-                } else {
-                    $(`#quizz${i}`)
-                        .find(`[value="${quizz[i].correct}"]`)
-                        .parent()
-                        .addClass("correct");
-                    $(`#quizz${i}`)
-                        .find(`[value="${$resultat[i]}"]`)
-                        .parent()
-                        .addClass("wrong");
-                    console.log("wrong");
-                }
+    });
+
+    function checkResult() {
+        let $good=0,$bad=0;
+        for (var i = 0; i < quizz.length; i++) {
+            if (quizz[i].correct == $resultat[i]) {
+                $(`#quizz${i}`)
+                    .find(`[value="${$resultat[i]}"]`)
+                    .parent()
+                    .addClass("correct");
+                $good++;
+            } else {
+                $(`#quizz${i}`)
+                    .find(`[value="${quizz[i].correct}"]`)
+                    .parent()
+                    .addClass("correct");
+                $(`#quizz${i}`)
+                    .find(`[value="${$resultat[i]}"]`)
+                    .parent()
+                    .addClass("wrong");
+                    $bad++;
             }
         }
-    });
+        $("#quizzresult .title").text("QUIZZ NIVEAUX 1")
+        $(".bonne").text($good)
+        $(".bad").text($bad)
+
+        $("html,body").animate({ scrollTop: `${$("#quizzresult")}` }, 600);
+        $("#quizzresult").slideToggle(600)
+    }
+
+    $(".button2.resetQuizz").click(function(e) {
+        e.preventDefault();
+        $("#quizzresult").slideToggle(600);
+        $("section#quizznum1").empty();
+        loadQuizz1();
+    })
 });

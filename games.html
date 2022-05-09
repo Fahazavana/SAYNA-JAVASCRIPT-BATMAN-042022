@@ -1,72 +1,139 @@
 <!DOCTYPE html>
 <html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./assets/css/styles.css" />
+        <link rel="stylesheet" href="./assets/css/games.css" />
+        <title>Batman - Games</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/styles.css">
-    <link rel="stylesheet" href="./assets/css/games.css">
-    <title>Batman - Games</title>
-</head>
-
-<body>
-    <div class="tLine"></div>
-    <div class="lLine"></div>
-    <div class="rLine"></div>
-    <div class="scroll"><img class="arrow2" src="./assets/logo/logo_bat_flèche.png" alt=""><img class="ic-1" src="./assets/logo/icon_facebook.png" alt=""> <img src="./assets/logo/icon_ig.png" alt=""><img src="./assets/logo/icon_tw.png" alt=""><img class="arrow2" src="./assets/logo/logo_bat_flèche_2.png"
-            alt=""> </div>
-    <header class="navbar">
-        <nav class="container">
-            <a href="./index.html"><img src="./assets/logo/logohome.png" alt="" class="brand p-3"></a>
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link " href="./index.html">HOME</a></li>
-                <li class="nav-item"><a class="nav-link active" href="./games.html">GAME</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div id="top" class="container-fluid">
-        <div class="container">
-            <h1 class="carte titre">LET'S PLAY A <br> LITLE GAMES
-            </h1>
-            <img id="arrow" src="./assets/logo/flèche_down_header.png" alt="">
+    <body>
+        <div class="tLine"></div>
+        <div class="lLine"></div>
+        <div class="rLine"></div>
+        <div class="scroll">
+            <img
+                class="arrow2"
+                src="./assets/logo/logo_bat_flèche.png"
+                alt=""
+            /><img class="ic-1" src="./assets/logo/icon_facebook.png" alt="" />
+            <img src="./assets/logo/icon_ig.png" alt="" /><img
+                src="./assets/logo/icon_tw.png"
+                alt=""
+            /><img
+                class="arrow2"
+                src="./assets/logo/logo_bat_flèche_2.png"
+                alt=""
+            />
         </div>
-    </div>
-
-
-
-
-    <section id="quizznum1" class="container">
-        <h2> QUIZ NIVEAU 1</h2>
-    </section>
-    <section id="quizz2" class="container">
-        <h2>QUIZ NIVEAU 2 : CONNAISSEZ VOUS BIEN LE CHEVALIER NOIR </h2>
-        <div class="slider-quizz">
-            <img src="./assets/img/Game/Batgame2.png">
+        <header class="navbar">
+            <nav class="container">
+                <a href="./index.html"
+                    ><img
+                        src="./assets/logo/logohome.png"
+                        alt=""
+                        class="brand p-3"
+                /></a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./games.html">GAME</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div id="top" class="container-fluid">
+            <div class="container">
+                <h1 class="carte titre">
+                    LET'S PLAY A <br />
+                    LITLE GAMES
+                </h1>
+                <img
+                    id="arrow"
+                    src="./assets/logo/flèche_down_header.png"
+                    alt=""
+                />
+            </div>
         </div>
-        <button class="btn">DEMARER LE QUIZZ</button>
-    </section>
-    <footer>
-        <div class="container">
-            <p><img class="ic-0" src="./assets/logo/icon_WB.png" alt=""> Ce projet respecte l’univers cinématographique des films Batman récents. Version Nolan & Snyder & Reeves</p>
-            <ul>
-                <li><a href=""><span class="duo"><img class="ic-1" src="./assets/logo/logo_sayna_white.png" alt=""><img src="./assets/logo/icon_x.png" alt=""><img class="ic-1" src="./assets/logo/icon_DC.png" alt=""></span></a></li>
-                <li>
-                    <a href=""><img class="ic-1" src="./assets/logo/icon_facebook.png" alt=""></a>
-                </li>
-                <li>
-                    <a href=""><img class="ic-1" src="./assets/logo/icon_ig.png" alt=""></a>
-                </li>
-                <li>
-                    <a href=""><img class="ic-1" src="./assets/logo/icon_tw.png" alt=""></a>
-                </li>
-            </ul>
+
+        <section id="quizznum1" class="container">
+            <h2>QUIZ NIVEAU 1</h2>
+        </section>
+
+        <div id="quizzresult">
+            <div class="container">
+                <div class="title"></div>
+                <ul>
+                    <li>Bonne réponse : <span class="bonne"></span></li>
+                    <li>Mauvaise réponses: <span class="wrong"></span></li>
+                </ul>
+                <button class="button2 resetQuizz">Fermer</button>
+            </div>
         </div>
-    </footer>
 
-    <script src="./assets/js/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/game.js"></script>
-</body>
+        <section id="quizz2" class="container">
+            <h2>QUIZ NIVEAU 2 : CONNAISSEZ VOUS BIEN LE CHEVALIER NOIR</h2>
+            <div class="slider-quizz">
+                <img src="./assets/img/Game/Batgame2.png" />
+            </div>
+            <button class="btn">DEMARER LE QUIZZ</button>
+        </section>
+        <footer>
+            <div class="container">
+                <p>
+                    <img class="ic-0" src="./assets/logo/icon_WB.png" alt="" />
+                    Ce projet respecte l’univers cinématographique des films
+                    Batman récents. Version Nolan & Snyder & Reeves
+                </p>
+                <ul>
+                    <li>
+                        <a href=""
+                            ><span class="duo"
+                                ><img
+                                    class="ic-1"
+                                    src="./assets/logo/logo_sayna_white.png"
+                                    alt="" /><img
+                                    src="./assets/logo/icon_x.png"
+                                    alt="" /><img
+                                    class="ic-1"
+                                    src="./assets/logo/icon_DC.png"
+                                    alt="" /></span
+                        ></a>
+                    </li>
+                    <li>
+                        <a href=""
+                            ><img
+                                class="ic-1"
+                                src="./assets/logo/icon_facebook.png"
+                                alt=""
+                        /></a>
+                    </li>
+                    <li>
+                        <a href=""
+                            ><img
+                                class="ic-1"
+                                src="./assets/logo/icon_ig.png"
+                                alt=""
+                        /></a>
+                    </li>
+                    <li>
+                        <a href=""
+                            ><img
+                                class="ic-1"
+                                src="./assets/logo/icon_tw.png"
+                                alt=""
+                        /></a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
 
+        <script src="./assets/js/jquery-3.6.0.min.js"></script>
+        <script src="./assets/js/main.js"></script>
+        <script src="./assets/js/game.js"></script>
+    </body>
 </html>
