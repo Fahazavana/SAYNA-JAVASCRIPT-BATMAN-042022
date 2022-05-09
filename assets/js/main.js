@@ -166,7 +166,18 @@ $(document).ready(function() {
 
 
     /* Les Carte */
-    $(".card-3>.col").hover(function() {
+    $(".card-3>.col:not(.special)").hover(function() {
+        let $curent = $("img", this);
+        $curent.hasClass("zoomOut") ? $curent.removeClass("zoomOut").addClass("zoomIn") : $curent.addClass("zoomIn");
+        $(".info", this).toggle(500);
+
+    }, function() {
+        let $curent = $("img", this);
+        $curent.hasClass("zoomIn") ? $curent.removeClass("zoomIn").addClass("zoomOut") : $curent.addClass("zoomOut");
+        $(".info", this).toggle(500);
+    });
+
+    $(".special").hover(function() {
         let $curent = $("img", this);
         $curent.hasClass("zoomOut") ? $curent.removeClass("zoomOut").addClass("zoomIn") : $curent.addClass("zoomIn");
         $(".info", this).toggle(500);
@@ -179,33 +190,34 @@ $(document).ready(function() {
 
 
     /* VALIDATION DES FORMULAIRES */
-
-
     $(".form form").submit(function(e) {
         e.preventDefault();
-        $("#overlay").slideToggle(600);
+        let $contact = $("#contact");
+        let $overlay = $("#overlay")
+        $overlay.css("height",`${$contact.height()}px`)
+        $contact.slideToggle(300)
+        $overlay.slideToggle(300);
         let $formulaire = $("form")
         let $entry = $($formulaire).find("input:not([type='submit']),textarea")
         let $isValid = true;
-
-
-        /* Pas encore complet*/
         for (let i = 0; i < $entry.length; i++) {
+            console.log($entry[i])
             if ($($entry[i]).val().length == 0) {
                 $isValid = false
             };
         }
         if ($isValid) {
-            $("#overlay .message").text("SUCCES")
-            $(this).reset();
+            $("#overlay .message").text("MESSAGE REÇU");
+            $("form")[0].reset();
         } else {
-            $("#overlay .message").text("Verifier le fomulaire, car il ya des champ non remplit")
+            $("#overlay .message").text("VERIFIER LE FOMULAIRE, CAR IL YA DES CHAMPS NON REMPLIT")
         }
 
     });
     $(".popcontainer").click(function(e) {
         e.preventDefault();
-        $("#overlay").slideToggle(600);
+        $("#overlay").slideToggle(300);
+        $("#contact").slideToggle(300)
     });
 
     drawLine()

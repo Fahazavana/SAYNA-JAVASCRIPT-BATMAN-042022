@@ -52,6 +52,14 @@ section.container {
     width: 100%
 }
 
+
+.correct{
+    background-color: #19587d;
+}
+.wrong{
+    background-color: #B11313;
+}
+
 @media screen and (max-width:768px) {
     .quizz-container {
         width: 90%;

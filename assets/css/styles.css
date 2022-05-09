@@ -185,7 +185,7 @@ header {
     display: block;
     margin: auto;
     width: 50px;
-    margin-top: 2em;
+    margin-top: 5em;
 }
 
 
@@ -195,6 +195,9 @@ header {
     color: #fff
 }
 
+
+
+/* Carte 3 colonne (nemesis +cinema)*/
 .card-3 {
     display: flex;
     justify-content: space-between;
@@ -310,7 +313,7 @@ header {
 }
 
 #multimedia iframe:hover {
-    box-shadow: 0px 0px 2rem var(--color-white);
+    box-shadow: 0px 0px 2.5rem var(--color-white);
 }
 
 
@@ -586,7 +589,6 @@ footer .duo {
 
 
 /*hover sur les icone (necessite encore des ajustements) */
-
 .brand:hover,
 .scroll img:hover,
 .ic-0:hover,
@@ -649,6 +651,9 @@ footer .duo {
         margin-top: 10px;
         width: 200px;
     }
+
+
+    /* Carte 3 colonne*/
     .card-3 {
         flex-direction: column;
         align-items: center;
@@ -657,6 +662,7 @@ footer .duo {
         width: 70%;
         margin-bottom: 2.5rem;
     }
+
     #multimedia button {
         position: relative;
         top: 300px;
@@ -746,31 +752,37 @@ h2,
 }
 
 .info {
+    border: 1px solid var(--color-gray);
     transform: scale(1.1);
     bottom: -2.5%;
     width: 100%;
     position: absolute;
-    background-color: rgba(25, 88, 125, 0.5);
+    background-color:  rgba(13, 14, 9, 0.5);
     display: none;
 }
 
 .info img {
     position: relative;
     z-index: 2;
-    left: 5px;
-    top: 5px;
-    width: 30%;
+    left: 15px;
+    top: 20px;
+    width: 20%;
 }
 
 .info .nom {
-    font-size: 22px;
-    width: 75%;
+    font-size: 12px;
+    font-weight: bold;
+    width: 70%;
     margin: auto;
-    padding: 10px;
-    border-radius: 1em;
+    padding: 15px;
+    border-radius: 2em;
     text-align: center;
-    background-image: linear-gradient(-45deg, rgba(237, 222, 191, 0.7) 40%, rgba(137, 0, 8, 0.7) 60%);
+    background-image: linear-gradient(90deg, rgba(237, 222, 191, 0.4) 40%, rgba(137, 0, 8, 0.4) 60%);
     transform: translateY(-50%);
+}
+.info .nom .year{
+    font-size: 8px;
+    color: #f8f184;
 }
 
 .zoomIn {
@@ -783,19 +795,18 @@ h2,
     transition: .6s ease;
 }
 
+
+/* pop up box */
 #overlay {
     cursor: pointer;
-    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
     background: linear-gradient(135deg, rgba(237, 222, 191, 0.6), rgba(25, 88, 125, 0.6) 60%);
     z-index: 99;
     display: none;
 }
 
-#overlay .popcontainer {
+.popcontainer {
     width: 100%;
     height: 100%;
     display: flex;
@@ -805,8 +816,8 @@ h2,
 
 #overlay .popcontainer .popup {
     background: linear-gradient(135deg, rgba(237, 222, 191, 0.9), rgba(25, 88, 125, 0.9) 60%);
-    width: 60%;
-    height: 60%;
+    width: 100%;
+    height: 85%;
     border-radius: 40px;
     font-size: 30px;
     color: white;
@@ -814,5 +825,12 @@ h2,
     font-weight: bold;
     align-items: center;
     justify-content: center;
-    font-family: 'space-grotesk'
+    font-family: 'space-grotesk';
+    text-align: center;
+}
+
+
+.special{
+    position: relative;
+    left: 0;
 }
