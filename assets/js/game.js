@@ -264,7 +264,7 @@ $(document).ready(function () {
         $(".bonne").text($good)
         $(".bad").text($bad)
 
-        $("html,body").animate({ scrollTop: `${$("#quizzresult")}` }, 600);
+        // $("html,body").animate({ scrollTop: `${$("#quizzresult")}` }, 600);
         $("#quizzresult").slideToggle(600)
     }
 
