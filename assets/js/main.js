@@ -2,17 +2,11 @@ $(document).ready(function() {
     let $win = $(window);
     let $doc = $(document)
 
-
-    
-
-
-
-
     /* LES SLIDERS DE HOME */
     /* scrollbar */
     $win.scroll(function() {
         if ($win.width() > 768) {
-            let $posY = $(document).scrollTop()
+            let $posY = $doc.scrollTop()
             $(".scroll").css({ "transform": `translateY(${$posY}px)` })
         }
     });
