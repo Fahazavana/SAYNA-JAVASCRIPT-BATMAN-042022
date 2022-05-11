@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const quizz = [
+    /* const quizz = [
         {
             question: "Quel est l’autre nom de l’Homme:Mystère ?",
             choix: {
@@ -156,8 +156,7 @@ $(document).ready(function () {
             correct: 2,
         },
     ];
-
-    let $resultat = {};
+*/
 
     function setmultipleAttribute(element, attrs) {
         for (const key in attrs) {
@@ -165,82 +164,90 @@ $(document).ready(function () {
         }
     }
 
-    function loadQuizz1() {
-        let i;
-        for (i = 0; i < quizz.length; i++) {
-            const { question, choix } = quizz[i];
-            let quest = document.createElement("div");
-            let container = document.createElement("div");
-            setmultipleAttribute(container, {
-                class: "quizz-container",
-                id: `quizz${i}`,
-            });
-
-            quest.setAttribute("class", "quizz-title");
-            container.appendChild(quest);
-            quest.innerText = question;
-            for (let j in choix) {
-                var qcm = document.createElement("div");
-                qcm.setAttribute("class", "qcm");
-                let checkbox = document.createElement("input");
-                setmultipleAttribute(checkbox, {
-                    type: "checkbox",
-                    id: `qcm${i}${j}`,
-                    value: `${j}`,
-                    name: `quizz${i}`,
+    $.ajax({
+        url: "https://plankton-app-mj9br.ondigitalocean.app/questions",
+        dataType: "json",
+        success: function (quizz) {
+            let i;
+            for (i = 0; i < quizz.length; i++) {
+                const { question, response } = quizz[i];
+                let quest = document.createElement("div");
+                let container = document.createElement("div");
+                setmultipleAttribute(container, {
+                    class: "quizz-container",
+                    id: `quizz${i}`,
                 });
-                qcm.appendChild(checkbox);
-                let label = document.createElement("label");
-                label.setAttribute("for", `qcm${i}${j}`);
-                label.innerText = choix[j];
-                qcm.appendChild(label);
-                container.appendChild(qcm);
-            }
-            $("section#quizznum1").append(container);
-        }
-        $resultat = {};
-        drawLine();
-    }
-    loadQuizz1();
 
-    /* On passe au suivant apres avoir clicker et on desactive*/
-    function getQuizzId(quizzId) {
-        let id = 0,
-            tmp = "";
-        for (var i = 5; i < quizzId.length; i++) {
-            tmp += quizzId[i];
-        }
-        return parseInt(tmp, 10);
-    }
-    $(".quizz-container  input[type='checkbox']").click(function (e) {
-        let $next = $(this).parent().parent().next();
-        let $current = $(this);
-        let $nameVal = $current.attr("name");
-        let $quizzId = getQuizzId($nameVal);
-        let $group = $(`input[name=${$nameVal}]`);
-        for (let i = 0; i < $group.length; i++) {
-            $($group[i]).attr("disabled", "true");
-            if ($($group[i]).is(":checked")) {
-                $resultat[$quizzId] = $($group[i]).val();
+                quest.setAttribute("class", "quizz-title");
+                container.appendChild(quest);
+                quest.innerText = question;
+                console.log(response);
+                for (let j in response) {
+                    var qcm = document.createElement("div");
+                    qcm.setAttribute("class", "qcm");
+                    let checkbox = document.createElement("input");
+                    setmultipleAttribute(checkbox, {
+                        type: "checkbox",
+                        id: `qcm${i}${j}`,
+                        value: `${j}`,
+                        name: `quizz${i}`,
+                    });
+                    qcm.appendChild(checkbox);
+                    let label = document.createElement("label");
+                    label.setAttribute("for", `qcm${i}${j}`);
+                    label.innerText = response[j].text;
+                    qcm.appendChild(label);
+                    container.appendChild(qcm);
+                }
+                $("section#quizznum1").append(container);
             }
-        }
-
-        let $resultLength = Object.keys($resultat).length;
-        if ($next.length > 0 && quizz.length !== $resultLength) {
-            var offset = $($next).offset().top;
-            $("html,body").animate({ scrollTop: offset }, 800);
-        } else {
-            if ($resultLength != quizz.length) {
-                alert("Veuillez completer tout les reponse");
-            } else {
-                checkResult();
+            drawLine();
+            let $resultat = {};
+            /* On passe au suivant apres avoir clicker et on desactive*/
+            function getQuizzId(quizzId) {
+                let id = 0,
+                    tmp = "";
+                for (var i = 5; i < quizzId.length; i++) {
+                    tmp += quizzId[i];
+                }
+                return parseInt(tmp, 10);
             }
-        }
 
+            $(".quizz-container  input[type='checkbox']").click(function (e) {
+                let $next = $(this).parent().parent().next();
+                let $current = $(this);
+                let $nameVal = $current.attr("name");
+                let $quizzId = getQuizzId($nameVal);
+                let $group = $(`input[name=${$nameVal}]`);
+                for (let i = 0; i < $group.length; i++) {
+                    $($group[i]).attr("disabled", "true");
+                    if ($($group[i]).is(":checked")) {
+                        $resultat[$quizzId] = $($group[i]).val();
+                    }
+                }
+
+                let $resultLength = Object.keys($resultat).length;
+                if ($next.length > 0 && quizz.length !== $resultLength) {
+                    var offset = $($next).offset().top;
+                    $("html,body").animate({ scrollTop: offset }, 800);
+                } else {
+                    if ($resultLength != quizz.length) {
+                        alert("Veuillez completer tout les reponse");
+                    } else {
+                        checkResult(quizz,$resultat);
+                    }
+                }
+            });
+        },
+        error: function () {
+            console.log(" Impossible de Contacter le srveur");
+        },
     });
 
-    function checkResult() {
-        let $good=0,$bad=0;
+
+    function checkResult(quizz,$resultat) {
+        let $good = 0,
+            $bad = 0;
         for (var i = 0; i < quizz.length; i++) {
             if (quizz[i].correct == $resultat[i]) {
                 $(`#quizz${i}`)
@@ -257,21 +264,23 @@ $(document).ready(function () {
                     .find(`[value="${$resultat[i]}"]`)
                     .parent()
                     .addClass("wrong");
-                    $bad++;
+                $bad++;
             }
         }
-        $("#quizzresult .title").text("QUIZZ NIVEAUX 1")
-        $(".bonne").text($good)
-        $(".bad").text($bad)
-
-        // $("html,body").animate({ scrollTop: `${$("#quizzresult")}` }, 600);
-        $("#quizzresult").slideToggle(600)
+        $("#quizzresult .title").text("QUIZZ NIVEAUX 1");
+        $(".bonne").text($good);
+        $(".bad").text($bad);
+        //$("html,body").animate({ scrollTop: `${$("#quizzresult").offset().top}` }, 600);
+        $("#quizzresult").slideToggle(600);
     }
 
-    $(".button2.resetQuizz").click(function(e) {
+    $(".button2.resetQuizz").click(function (e) {
         e.preventDefault();
         $("#quizzresult").slideToggle(600);
         $("section#quizznum1").empty();
-        loadQuizz1();
-    })
+        $("html,body").animate(
+            { scrollTop: `${$("section#quizznum1").offset().top}` },
+            600
+        );
+    });
 });
