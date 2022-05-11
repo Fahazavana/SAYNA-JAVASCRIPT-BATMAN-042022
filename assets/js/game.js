@@ -163,7 +163,6 @@ $(document).ready(function () {
             element.setAttribute(key, attrs[key]);
         }
     }
-
     loadquizz = function () {
         $.ajax({
             url: "https://plankton-app-mj9br.ondigitalocean.app/questions/all",
@@ -182,7 +181,6 @@ $(document).ready(function () {
                     quest.setAttribute("class", "quizz-title");
                     container.appendChild(quest);
                     quest.innerText = question;
-                    console.log(response);
                     for (let j in response) {
                         var qcm = document.createElement("div");
                         qcm.setAttribute("class", "qcm");
@@ -247,10 +245,8 @@ $(document).ready(function () {
             },
         });
     };
-
     loadquizz();
     function checkResult(quizz, $resultat) {
-        console.log($resultat);
         let $good = 0,
             $bad = 0;
         for (var i = 0; i < quizz.length; i++) {
@@ -281,7 +277,10 @@ $(document).ready(function () {
         $(".bonne").text($good);
         $(".bad").text($bad);
         $("#quizzresult").slideToggle(600);
-        $("html,body").animate({ scrollTop: `${$("#quizzresult").offset().top}` }, 600);
+        $("html,body").animate(
+            { scrollTop: `${$("#quizzresult").offset().top}` },
+            600
+        );
     }
 
     $(".button2.resetQuizz").click(function (e) {
@@ -293,5 +292,98 @@ $(document).ready(function () {
             600
         );
         loadquizz();
+    });
+
+    // QUIZZ NUMERO 2
+    loadQuizz2 = function () {
+        $.ajax({
+            url: "https://plankton-app-mj9br.ondigitalocean.app/questions/all",
+            dataType: "json",
+            success: function (quizz) {
+                let i;
+                for (i = 0; i < quizz.length; i++) {
+                    const { question, response } = quizz[i];
+                    let quest = document.createElement("div");
+                    let container = document.createElement("div");
+                    setmultipleAttribute(container, {
+                        class: "quizz-container",
+                        id: `quizz${i}`,
+                    });
+
+                    quest.setAttribute("class", "quizz-title");
+                    container.appendChild(quest);
+                    quest.innerText = question;
+                    for (let j in response) {
+                        var qcm = document.createElement("div");
+                        qcm.setAttribute("class", "qcm");
+                        let checkbox = document.createElement("input");
+                        setmultipleAttribute(checkbox, {
+                            type: "checkbox",
+                            id: `qcm${i}${j}`,
+                            value: `${j}`,
+                            name: `quizz${i}`,
+                        });
+                        qcm.appendChild(checkbox);
+                        let label = document.createElement("label");
+                        label.setAttribute("for", `qcm${i}${j}`);
+                        label.innerText = response[j].text;
+                        qcm.appendChild(label);
+                        container.appendChild(qcm);
+                    }
+                    $("section#quizznum2 > .quizz-wrapper").append(container);
+                }
+                drawLine();
+                let $resultat = {};
+                /* On passe au suivant apres avoir clicker et on desactive*/
+                function getQuizzId(quizzId) {
+                    let id = 0,
+                        tmp = "";
+                    for (var i = 5; i < quizzId.length; i++) {
+                        tmp += quizzId[i];
+                    }
+                    return parseInt(tmp, 10);
+                }
+
+                $(".slider-quizz").fadeOut(500);
+                $("#quizznum2 >.quizz-wrapper #quizz0.quizz-container").fadeIn(500);
+
+
+                $(".quizz-container  input[type='checkbox']").click(function (
+                    e
+                ) {
+                    let $thisParent = $(this).parent().parent()
+                    let $next = $thisParent.next();
+                    let $current = $(this);
+                    let $nameVal = $current.attr("name");
+                    let $quizzId = getQuizzId($nameVal);
+                    let $group = $(`input[name=${$nameVal}]`);
+                    for (let i = 1; i < $group.length; i++) {
+                        $($group[i]).attr("disabled", "true");
+                        if ($($group[i]).is(":checked")) {
+                            $resultat[$quizzId] = $($group[i]).val();
+                        }
+                    }
+                    let $resultLength = Object.keys($resultat).length;
+                    if ($next.length > 0 && quizz.length !== $resultLength) {
+                        $thisParent.fadeOut(500);
+                        $next.fadeIn(500);
+                    } else {
+                        if ($resultLength != quizz.length) {
+                            alert("Veuillez completer tout les reponse");
+                        } else {
+                            checkResult(quizz, $resultat);
+                        }
+                    }
+                });
+            },
+            error: function () {
+                console.log(" Impossible de Contacter le srveur");
+            },
+        });
+    };
+
+    $("#startQuizz2").click(function (e) {
+        e.preventDefault();
+        loadQuizz2();
     });
 });

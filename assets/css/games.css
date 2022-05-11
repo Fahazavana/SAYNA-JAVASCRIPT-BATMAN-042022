@@ -101,3 +101,11 @@ section.container {
     font-weight: bold;
     font-size: 22px;
 }
+
+
+#quizznum2 > .quizz-wrapper .quizz-container{
+    position: relative;
+    top:0;
+    left :0;
+    display: none;
+}
