@@ -91,9 +91,13 @@ section.container {
     color: white;
 }
 #quizzresult .container ul .bonne{
-    color: #19587d;
+    color: #ffff00;
+    font-weight: bold;
+    font-size: 22px;
 }
 
 #quizzresult .container ul .bad{
     color: #B11313;
+    font-weight: bold;
+    font-size: 22px;
 }
