@@ -1,168 +1,10 @@
 $(document).ready(function () {
-    /* const quizz = [
-        {
-            question: "Quel est l’autre nom de l’Homme:Mystère ?",
-            choix: {
-                0: "Le Sphinx",
-
-                1: "Saphir",
-
-                2: "Le Joker",
-            },
-            correct: 0,
-        },
-
-        {
-            question: "Quelle est l’ancienne profession de Harley Quinn ",
-            choix: {
-                0: "Dentiste",
-                1: "Infirmière",
-                2: "Psychiatre",
-            },
-            correct: 2,
-        },
-
-        {
-            question: "Quel est l’objet fétiche de Double Face ?",
-            choix: {
-                0: "Un livre",
-                1: "Une pièce",
-                2: "Un couteau",
-            },
-            correct: 1,
-        },
-
-        {
-            question: "Quelle ville Batman défend-il ?",
-            choix: {
-                0: "Gotham City",
-                1: "Starling City",
-                2: "Hell’s Kitchen",
-            },
-            correct: 0,
-        },
-
-        {
-            question: "Tim Burtin a réalisé deux Batman, qui jouait Batman ",
-            choix: {
-                0: "Val Kilmer",
-                1: "Mickael Keaton",
-                2: "Georges Clooney",
-            },
-            correct: 1,
-        },
-
-        {
-            question: "Dans son premier Batman (1989) Jack Nicholson jouait :",
-            choix: {
-                0: "L’Homme Mystère",
-                1: "Le Pingouin",
-                2: "Le Joker",
-            },
-            correct: 2,
-        },
-
-        {
-            question: "Quel est le prénom des parents du jeune Bruce Wayne ?",
-            choix: {
-                0: "Elaine et Georges",
-                1: "Thomas et Martha",
-                2: "Martha et James",
-            },
-            correct: 1,
-        },
-
-        {
-            question: "Qui interprète le Joker en 2008 ?",
-            choix: {
-                0: "Heath Legder",
-                1: "Haeth Ledger",
-                2: "Heath Ledger",
-            },
-            correct: 2,
-        },
-
-        {
-            question: "En quelle année Robin fait il sa première apparition ",
-            choix: {
-                0: "1940",
-                1: "1936",
-                2: "1941",
-            },
-            correct: 1,
-        },
-
-        {
-            question: "Qui est la fille de Batman et Catwoman (Earth : 2) ? ",
-            choix: {
-                0: "Oracle",
-                1: "Huntress",
-                2: "Black Canary",
-            },
-            correct: 1,
-        },
-
-        {
-            question: "Qui est Jonathan Crane ?",
-            choix: {
-                0: "L’Épouvantail",
-                1: "Le Joker",
-                2: "Hugo Strange",
-            },
-            correct: 0,
-        },
-
-        {
-            question: "Batman c’est aussi le nom d’une ville en...",
-            choix: {
-                0: "Turquie",
-                1: "Islande",
-                2: "Allemagne",
-            },
-            correct: 0,
-        },
-
-        {
-            question: "Qui a produit Batman en 1964 ",
-            choix: {
-                0: "Stanley Kubrick",
-                1: "Andy Warhol",
-                2: "Peter Jackson",
-            },
-            correct: 1,
-        },
-
-        {
-            question:
-                "Quel vilain apparaît pour la première fois dans le Batman 232 ?",
-            choix: {
-                0: "Ra’s al Ghul",
-                1: "Poison Ivy",
-                2: "Emma Watson",
-            },
-            correct: 0,
-        },
-
-        {
-            question:
-                " Qui est l’interprète de Catwoman dans le nouveau Batman de Matt Reeves (2022) ?",
-            choix: {
-                0: "Gigi Hadid ",
-
-                1: "Lola Iolani Momoa ",
-
-                2: "Zoë Kravitz",
-            },
-            correct: 2,
-        },
-    ];
-*/
-
     function setmultipleAttribute(element, attrs) {
         for (const key in attrs) {
             element.setAttribute(key, attrs[key]);
         }
     }
+
     loadquizz = function () {
         $.ajax({
             url: "https://plankton-app-mj9br.ondigitalocean.app/questions/all",
@@ -177,7 +19,6 @@ $(document).ready(function () {
                         class: "quizz-container",
                         id: `quizz${i}`,
                     });
-
                     quest.setAttribute("class", "quizz-title");
                     container.appendChild(quest);
                     quest.innerText = question;
@@ -246,6 +87,7 @@ $(document).ready(function () {
         });
     };
     loadquizz();
+
     function checkResult(quizz, $resultat) {
         let $good = 0,
             $bad = 0;
@@ -286,7 +128,7 @@ $(document).ready(function () {
     $(".button2.resetQuizz").click(function (e) {
         e.preventDefault();
         $("#quizzresult").slideToggle(600);
-        $("section#quizznum1 > .quizz-wrapper").empty();
+        $("section#quizznum1 > .slider-quizz-wrapper").empty();
         $("html,body").animate(
             { scrollTop: `${$("section#quizznum1").offset().top}` },
             600
@@ -309,7 +151,6 @@ $(document).ready(function () {
                         class: "quizz-container",
                         id: `quizz${i}`,
                     });
-
                     quest.setAttribute("class", "quizz-title");
                     container.appendChild(quest);
                     quest.innerText = question;
@@ -330,7 +171,9 @@ $(document).ready(function () {
                         qcm.appendChild(label);
                         container.appendChild(qcm);
                     }
-                    $("section#quizznum2 > .quizz-wrapper").append(container);
+                    $(
+                        "section#quizznum2 >.slider-quizz-wrapper .slider-quizz"
+                    ).append(container);
                 }
                 drawLine();
                 let $resultat = {};
@@ -343,21 +186,27 @@ $(document).ready(function () {
                     }
                     return parseInt(tmp, 10);
                 }
-
-                $(".slider-quizz").fadeOut(500);
-                $("#quizznum2 >.quizz-wrapper #quizz0.quizz-container").fadeIn(500);
-
-
+                $counter = 1;
+                $curr = $(".curr");
+                $curr.text($counter);
+                $(".all").text(quizz.length);
+                $(".slider-quizz img").toggle(500);
+                $(
+                    "#quizznum2>.slider-quizz-wrapper .slider-quizz #quizz0.quizz-container"
+                ).toggle(500);
+                $(".quizz-counter").fadeIn(500);
                 $(".quizz-container  input[type='checkbox']").click(function (
                     e
                 ) {
-                    let $thisParent = $(this).parent().parent()
+                    $counter += 1;
+                    $curr.text($counter);
+                    let $thisParent = $(this).parent().parent();
                     let $next = $thisParent.next();
                     let $current = $(this);
                     let $nameVal = $current.attr("name");
                     let $quizzId = getQuizzId($nameVal);
                     let $group = $(`input[name=${$nameVal}]`);
-                    for (let i = 1; i < $group.length; i++) {
+                    for (let i = 0; i < $group.length; i++) {
                         $($group[i]).attr("disabled", "true");
                         if ($($group[i]).is(":checked")) {
                             $resultat[$quizzId] = $($group[i]).val();
@@ -365,13 +214,13 @@ $(document).ready(function () {
                     }
                     let $resultLength = Object.keys($resultat).length;
                     if ($next.length > 0 && quizz.length !== $resultLength) {
-                        $thisParent.fadeOut(500);
-                        $next.fadeIn(500);
+                        $thisParent.slideUp(500);
+                        $next.toggle(500);
                     } else {
                         if ($resultLength != quizz.length) {
                             alert("Veuillez completer tout les reponse");
                         } else {
-                            checkResult(quizz, $resultat);
+                            checkResult2(quizz, $resultat);
                         }
                     }
                 });
@@ -382,8 +231,68 @@ $(document).ready(function () {
         });
     };
 
+    /* demmarage du quizz numero 2 */
     $("#startQuizz2").click(function (e) {
         e.preventDefault();
         loadQuizz2();
+        $("#startQuizz2").toggle(1000);
     });
+
+    /* Construction de la réponse et affichage */
+    function checkResult2(quizz, $resultat) {
+        let $good = 0,
+            $bad = 0,
+            $svgGood =
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"/></svg>',
+            $svgBad =
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>';
+        for (var i = 0; i < quizz.length; i++) {
+            let $ans = document.createElement("div");
+            let $num = document.createElement("div");
+            let $texte = document.createElement("div");
+            let $status = document.createElement("div");
+            let $question = document.createElement("span");
+            let $taRep = document.createElement("span");
+            $ans.appendChild($num);
+            $ans.appendChild($texte);
+            $ans.appendChild($status);
+            $texte.appendChild($question);
+            $texte.appendChild($taRep);
+            $($question).addClass("laquestion");
+            $($status).addClass("circle");
+            $($num).addClass("circle");
+            $($ans).addClass("answers");
+            $($texte).addClass("texte");
+            $($taRep).addClass("info-quizz");
+            $question.innerText = quizz[i].question;
+            $num.innerText = i + 1;
+            if (quizz[i].response[$resultat[i]].isGood) {
+                $taRep.innerText =
+                    "Votre réponse : " + quizz[i].response[$resultat[i]].text;
+                $status.innerHTML = $svgGood;
+                $($ans).addClass("correct");
+                $good++;
+            } else {
+                let $good = document.createElement("span");
+                $($good).addClass("info-quizz");
+                $($ans).addClass("wrong");
+                $texte.appendChild($good);
+                $taRep.innerText =
+                    "Votre réponse : " + quizz[i].response[$resultat[i]].text;
+                $status.innerHTML = $svgBad;
+                for (let j = 0; j < quizz[i].response.length; j++) {
+                    if (quizz[i].response[j].isGood) {
+                        $good.innerHTML =
+                            "La réponse correcte : " +
+                            quizz[i].response[j].text;
+                        break;
+                    }
+                }
+                $bad++;
+            }
+            $("#quizz2result").append($ans);
+        }
+        $("#quizznum2 .slider-quizz-wrapper").toggle(500);
+        $("#quizz2result").toggle(500);
+    }
 });
