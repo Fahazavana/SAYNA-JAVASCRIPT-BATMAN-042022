@@ -115,26 +115,29 @@ $(document).ready(function () {
                 $bad++;
             }
         }
+        $("#quizzresult").append(
+            '<div class="container"><div class="title"></div><ul><li>Bonne réponse : <span class="bonne"></span></li><li>Mauvaise réponses: <span class="bad"></span></li></ul><div class="descision"></div><button class="button2 resetQuizz">Fermer</button></div>'
+        );
         $("#quizzresult .title").text("QUIZZ NIVEAUX 1");
         $(".bonne").text($good);
         $(".bad").text($bad);
+        if ($good >= quizz.length / 2) {
+            $(".descision").text("Félicitation Vous avez passer le test!!!");
+        } else {
+            $(".descision").text("Vous Pouver Réessayer");
+        }
         $("#quizzresult").slideToggle(600);
-        $("html,body").animate(
-            { scrollTop: `${$("#quizzresult").offset().top}` },
-            600
-        );
+        $(".button2.resetQuizz").click(function () {
+            $("#quizzresult").slideToggle(600);
+            $("section#quizznum1 > .slider-quizz-wrapper").empty();
+            $("html,body").animate(
+                { scrollTop: `${$("section#quizznum1").offset().top}` },
+                600
+            );
+            $("#quizznum1 .quizz-wrapper").empty();
+            loadquizz();
+        });
     }
-
-    $(".button2.resetQuizz").click(function (e) {
-        e.preventDefault();
-        $("#quizzresult").slideToggle(600);
-        $("section#quizznum1 > .slider-quizz-wrapper").empty();
-        $("html,body").animate(
-            { scrollTop: `${$("section#quizznum1").offset().top}` },
-            600
-        );
-        loadquizz();
-    });
 
     // QUIZZ NUMERO 2
     loadQuizz2 = function () {
@@ -236,6 +239,7 @@ $(document).ready(function () {
         e.preventDefault();
         loadQuizz2();
         $("#startQuizz2").toggle(1000);
+        $(".slider-quizz").addClass("quizz2-bg");
     });
 
     /* Construction de la réponse et affichage */
@@ -292,7 +296,23 @@ $(document).ready(function () {
             }
             $("#quizz2result").append($ans);
         }
+
+        $("#quizz2result").append(
+            '<div class="container"><div class="title"></div><ul><li>Bonne réponse : <span class="bonne"></span></li><li>Mauvaise réponses: <span class="bad"></span></li></ul><div class="descision"></div><button class="button2 resetQuizz2">Fermer</button></div>'
+        );
+        $("#quizz2result .title").text("QUIZZ NIVEAUX 2");
+        $(".bonne").text($good);
+        $(".bad").text($bad);
+        if ($good >= quizz.length / 2) {
+            $(".descision").text("Félicitation Vous avez passer le test!!!");
+        } else {
+            $(".descision").text("Vous Pouver Réessayer");
+        }
         $("#quizznum2 .slider-quizz-wrapper").toggle(500);
         $("#quizz2result").toggle(500);
+
+        $(".button2.resetQuizz2").click(function () {
+            window.location.reload();
+        });
     }
 });

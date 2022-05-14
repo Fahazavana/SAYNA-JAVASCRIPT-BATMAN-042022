@@ -801,6 +801,7 @@ h2,
 
 
 /* pop up box */
+#quizz2result .container,
 #quizzresult .container,
 #overlay {
     cursor: pointer;

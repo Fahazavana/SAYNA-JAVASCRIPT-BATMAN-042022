@@ -65,6 +65,8 @@ section.container {
     display: none;
 }
 
+
+#quizz2result .container,
 #quizzresult .container {
     font-size: 18px;
     display: flex;
@@ -72,24 +74,25 @@ section.container {
     justify-content: center;
     align-items: center;
 }
-
+.descision,
+#quizz2result .container .title,
 #quizzresult .container .title {
     font-size: 32px;
     color: white;
     font-weight: bold;
 }
-
+#quizz2result .container ul,
 #quizzresult .container ul {
     font-size: 18px;
     color: white;
 }
-
+#quizz2result .container ul .bonne,
 #quizzresult .container ul .bonne {
     color: #ffff00;
     font-weight: bold;
     font-size: 22px;
 }
-
+#quizz2result .container ul .bad,
 #quizzresult .container ul .bad {
     color: #b11313;
     font-weight: bold;
@@ -124,11 +127,17 @@ section.container {
 
 #quizznum2 .slider-quizz {
     width: 100%;
-    min-height: 400px;
+    min-height: 450px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+.quizz2-bg{
+    background-image: url("../img/Game/Batgame2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #quizznum2 .slider-quizz img.quizz-container {
